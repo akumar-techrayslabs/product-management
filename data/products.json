@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "id": "101",
+      "title": "Smartphone X1",
+      "brand": "TechCorp",
+      "category": "Electronics",
+      "price": 699.99,
+      "stock": 45
+   
+    },
+    {
+      "id": "102",
+      "title": "Wireless Earbuds",
+      "brand": "AudioPhile",
+      "category": "Accessories",
+      "price": 129.50,
+      "stock": 120
+      
+    }
+  ]
+}
