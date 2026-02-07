@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+        <link href="../styles/output.css" rel="stylesheet" />
+    <script src="/src/scripts/src/productsList.js" defer></script>
+    <script src="https://kit.fontawesome.com/3111ef2b65.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="flex  max-w-full h-screen ">
+        <div id="sidebar" class="flex h-screen sidebar  top-0 left-0 ">
+            <aside id="sidebar" class="bg-gray-800 text-white w-64 p-4">
+                <div class="text-2xl font-semibold mb-6 w-full px-4">Techrays</div>
+                <nav>
+                    <a href="./dashboard.html" class="block py-6 px-4 rounded hover:bg-gray-700">Dashboard</a>
+                    <a href="./products.html" class="block py-6 px-4 rounded hover:bg-gray-700">Add Products</a>
+                    <a href="./productsList.html" class="block py-6 px-4 rounded hover:bg-gray-700">Products</a>
+                    <a href="#" class="block py-6 px-4 rounded hover:bg-gray-700">Edit Products</a>
+                </nav>
+            </aside>
+        </div>
+
+        <div class=" w-full text-black h-full dashboard">
+
+         <table id="productTable" class="w-[90%] mx-auto bg-white  shadow-md rounded-lg overflow-hidden m-2">
+      <thead class="bg-gray-600 text-white">
+        <tr>
+          <th class="px-6 py-3 text-left text-sm font-semibold">ID</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold">Title</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold">Brand</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold">Category</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold">Price</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold">Stock</th>
+        </tr>
+      </thead>
+      <tbody class=" divide-gray-200 ">
+        
+      </tbody>
+    </table>  
+        </div>
+    </div>
+</body>
+</html>
