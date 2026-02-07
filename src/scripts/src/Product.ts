@@ -44,12 +44,12 @@ form.addEventListener('submit', (e: Event) => {
 
 
     let product_price = document.getElementById("product-title") as HTMLInputElement;
-    let product_price_value = Number(product_price.value)
+    let product_price_value = product_price.value
 
     let product_stock = document.getElementById("product-title") as HTMLInputElement;
-    let product_stock_value = Number(product_stock.value)
+    let product_stock_value = product_stock.value
 
-    if(typeof product_title_value !== "string" && typeof product_brand_value !== "string" && typeof product_category_value !== "string" && typeof product_price_value !== "number" &&  typeof product_stock_value !=="number" )
+    if(typeof product_title_value !== "string" && typeof product_brand_value !== "string" && typeof product_category_value !== "string" && typeof product_price_value !== "string" &&  typeof product_stock_value !=="string" )
     {
         showWarning();
         return;
@@ -84,12 +84,3 @@ form.addEventListener('submit', (e: Event) => {
 
 
 
- function addItem(value: string) {
-  const existingItems = JSON.parse(localStorage.getItem('items') || '[]') as string[];
-  existingItems.push(value);
-
-}
-
-function getItems(): string[] {
-  return JSON.parse(localStorage.getItem('items') || '[]');
-}

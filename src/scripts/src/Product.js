@@ -31,10 +31,10 @@ form.addEventListener('submit', function (e) {
     var product_category = document.getElementById("product-title");
     var product_category_value = product_category.value;
     var product_price = document.getElementById("product-title");
-    var product_price_value = Number(product_price.value);
+    var product_price_value = product_price.value;
     var product_stock = document.getElementById("product-title");
-    var product_stock_value = Number(product_stock.value);
-    if (typeof product_title_value !== "string" && typeof product_brand_value !== "string" && typeof product_category_value !== "string" && typeof product_price_value !== "number" && typeof product_stock_value !== "number") {
+    var product_stock_value = product_stock.value;
+    if (typeof product_title_value !== "string" && typeof product_brand_value !== "string" && typeof product_category_value !== "string" && typeof product_price_value !== "string" && typeof product_stock_value !== "string") {
         showWarning();
         return;
     }
@@ -58,10 +58,3 @@ form.addEventListener('submit', function (e) {
         console.error('Error saving data to localStorage:', error);
     }
 });
-function addItem(value) {
-    var existingItems = JSON.parse(localStorage.getItem('items') || '[]');
-    existingItems.push(value);
-}
-function getItems() {
-    return JSON.parse(localStorage.getItem('items') || '[]');
-}
