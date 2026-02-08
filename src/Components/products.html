@@ -11,12 +11,13 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <script type="module" src="/src/scripts/dist/index.js" defer></script>
   </head>
 
   <body id="#products-list">
     <div class="flex max-w-full h-screen">
-      <div id="sidebar" class="flex h-screen sidebar top-0 left-0">
-        <aside id="sidebar" class="bg-gray-800 text-white w-64 p-4">
+     <div  class="flex h-screen sidebar   top-0 left-0 ">
+            <aside id="sidebar" class="md:block hidden bg-gray-800 text-white w-64 p-4">
           <div class="text-2xl font-semibold mb-6 w-full px-4">Techrays</div>
           <nav>
             <a
@@ -37,6 +38,12 @@
             >
           </nav>
         </aside>
+         <button
+            id="menu-btn" onclick="menuBtnfunct()"
+            class="md:hidden cursor-pointer fixed top-4 right-4 z-50 bg-gray-800 text-white p-2 rounded"
+            >
+            <i class="fa-solid fa-bars"></i>
+            </button>
       </div>
 
       <div class="w-full text-black h-full dashboard flex justify-center items-center">
