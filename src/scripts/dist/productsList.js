@@ -1,3 +1,4 @@
+import createPlugin from "../../../node_modules/tailwindcss/dist/plugin.mjs";
 function showWarning() {
     Swal.fire({
         title: 'Warning!',
@@ -16,8 +17,19 @@ function showDelete() {
         window.location.reload();
     });
 }
+function showUpdate() {
+    Swal.fire({
+        title: 'Suucess!',
+        text: 'Product Updated Successfully',
+        icon: 'success',
+        confirmButtonText: 'OK'
+    }).then(() => {
+        window.location.reload();
+    });
+}
 window.showWarning = showWarning;
 window.showDelete = showDelete;
+window.showUpdate = showUpdate;
 const existingItems = localStorage.getItem('formData');
 if (!existingItems) {
     showWarning();
@@ -42,17 +54,59 @@ else {
       <td class="py-3 px-2 bg-gray-200">${product.product_stock_value}</td>
       <td class="py-3 px-2 bg-gray-200 "> <i class="fa-solid fa-trash cursor-pointer" style="color: #1e2939;" onclick="deleteProduct(${product.product_id})"></i>
       </td>
+      <td class="py-3 px-2 bg-gray-200 "> <i class="fa-solid fa-pen-to-square cursor-pointer" style="color: #1e2939;" onclick="editProduct(${product.product_id})"></i>
+      </td>
     `;
             tableBody.appendChild(row);
         });
     }
     function deleteProduct(id) {
-        const delProduct = products.filter((product) => product.product_id !== id);
+        const delProduct = products.filter((product) => product.product_id != id);
         const updatedProduct = delProduct.map((p) => JSON.stringify(p));
         showDelete();
         localStorage.setItem("formData", JSON.stringify(updatedProduct));
     }
     window.deleteProduct = deleteProduct;
+    function editProduct(id) {
+        const product = products.find((product) => product.product_id === id);
+        if (!product)
+            return;
+        const editform = document.getElementById("edit-form");
+        editform.classList.remove('hidden');
+        editform.classList.add('absolute');
+        const table = document.getElementById("productTable");
+        table.classList.add('hidden');
+        document.getElementById("productId").value = product.product_id;
+        document.getElementById("product-title").value = product.product_title_value;
+        document.getElementById("product-brand").value = product.product_brand_value;
+        document.getElementById("product-category").value = product.product_category_value;
+        document.getElementById("product-price").value = String(product.product_price_value);
+        document.getElementById("product-stock").value = String(product.product_stock_value);
+    }
+    window.editProduct = editProduct;
+    function updatedProduct() {
+        const id = document.getElementById("productId").value;
+        console.log(id);
+        console.log(document.getElementById("product-title").value);
+        const updatedProduct = {
+            product_id: document.getElementById("productId").value,
+            product_title_value: document.getElementById("product-title").value,
+            product_brand_value: document.getElementById("product-brand").value,
+            product_category_value: document.getElementById("product-category").value,
+            product_price_value: Number(document.getElementById("product-price").value),
+            product_stock_value: Number((document.getElementById("product-stock").value))
+        };
+        const updatedProducts = products.map((product) => product.product_id == id ? updatedProduct : product);
+        console.log(updatedProducts);
+        const updatedString = updatedProducts.map((p) => JSON.stringify(p));
+        localStorage.setItem("formData", JSON.stringify(updatedString));
+        showUpdate();
+    }
+    window.updatedProduct = updatedProduct;
+    const btn = document.getElementById("edit-btn");
+    btn?.addEventListener("click", (e) => {
+        e.preventDefault();
+        updatedProduct();
+    });
 }
-export {};
 //# sourceMappingURL=productsList.js.map
