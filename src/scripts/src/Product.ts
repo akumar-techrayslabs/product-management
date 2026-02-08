@@ -3,7 +3,7 @@
 const form = document.getElementById('product-form') as HTMLFormElement;
 const formData = new FormData(form);
 
-var Swal: any;
+declare var Swal: any;
 
 function showAlert() {
   Swal.fire({

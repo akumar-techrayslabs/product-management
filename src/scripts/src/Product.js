@@ -1,3 +1,5 @@
+
+
 var form = document.getElementById('product-form');
 var formData = new FormData(form);
 var Swal;
@@ -26,13 +28,13 @@ form.addEventListener('submit', function (e) {
     product_id = randomNumber;
     var product_title = document.getElementById("product-title");
     var product_title_value = product_title.value;
-    var product_brand = document.getElementById("product-title");
+    var product_brand = document.getElementById("product-brand");
     var product_brand_value = product_brand.value;
-    var product_category = document.getElementById("product-title");
+    var product_category = document.getElementById("product-category");
     var product_category_value = product_category.value;
-    var product_price = document.getElementById("product-title");
+    var product_price = document.getElementById("product-price");
     var product_price_value = product_price.value;
-    var product_stock = document.getElementById("product-title");
+    var product_stock = document.getElementById("product-stock");
     var product_stock_value = product_stock.value;
     if (typeof product_title_value !== "string" && typeof product_brand_value !== "string" && typeof product_category_value !== "string" && typeof product_price_value !== "string" && typeof product_stock_value !== "string") {
         showWarning();

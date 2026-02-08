@@ -1,20 +1,29 @@
-var existingItems = localStorage.getItem('formData');
-console.log(existingItems);
-//  const item = JSON.parse(JSON.parse(existingItems))
-if (existingItems) {
-    var products = JSON.parse(existingItems);
-    console.log("type of products ", typeof products);
-    console.log(products);
-    var tableBody_1 = document.querySelector("#productTable tbody");
-    products.forEach(function (product) {
-        var pro = JSON.parse(product);
-        console.log(pro);
-        console.log("product_id", pro.product_id);
-        var row = document.createElement("tr");
-        row.innerHTML = "\n      <td class=\"py-3 px-2 bg-gray-200\">".concat(pro.product_id, "</td>\n      <td class=\"py-3 px-2 bg-gray-200\">").concat(pro.product_title_value, "</td>\n      <td class=\"py-3 px-2 bg-gray-200\">").concat(pro.product_brand_value, "</td>\n      <td class=\"py-3 px-2 bg-gray-200\">").concat(pro.product_category_value, "</td>\n      <td class=\"py-3 px-2 bg-gray-200\">").concat(pro.product_price_value, "</td>\n      <td class=\"py-3 px-2 bg-gray-200\">").concat(pro.product_stock_value, "</td>\n    ");
-        tableBody_1.appendChild(row);
+function showWarning() {
+    Swal.fire({
+        title: 'Warning!',
+        text: 'No Any data ',
+        icon: 'pending',
+        confirmButtonText: 'OK'
     });
 }
+window.showWarning = showWarning;
+var existingItems = localStorage.getItem('formData');
+if (!existingItems) {
+    showWarning();
+}
 else {
-    console.log("No product data found in localStorage.");
+    var product = JSON.parse(existingItems);
+    var products = product.map(function (pro) { return JSON.parse(pro); });
+    console.log(existingItems);
+    var tableBody_1 = document.querySelector("#productTable tbody");
+    if (!tableBody_1) {
+        console.log("Table body not found ");
+    }
+    else {
+        products.forEach(function (product) {
+            var row = document.createElement("tr");
+            row.innerHTML = "\n      <td class=\"py-3 px-2 bg-gray-200\">".concat(product.product_id, "</td>\n      <td class=\"py-3 px-2 bg-gray-200\">").concat(product.product_title_value, "</td>\n      <td class=\"py-3 px-2 bg-gray-200\">").concat(product.product_brand_value, "</td>\n      <td class=\"py-3 px-2 bg-gray-200\">").concat(product.product_category_value, "</td>\n      <td class=\"py-3 px-2 bg-gray-200\">").concat(product.product_price_value, "</td>\n      <td class=\"py-3 px-2 bg-gray-200\">").concat(product.product_stock_value, "</td>\n    ");
+            tableBody_1.appendChild(row);
+        });
+    }
 }

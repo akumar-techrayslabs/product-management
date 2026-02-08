@@ -1,34 +1,61 @@
+interface Product{
+  product_id:number;
+  product_title_value:string;
+  product_brand_value:string;
+  product_category_value:string;
+  product_price_value:number;
+  product_stock_value:number;
+}
 
+declare var Swal: any;
+
+
+function showWarning() {
+  Swal.fire({
+    title: 'Warning!',
+    text: 'No Any data ',
+    icon: 'pending', 
+    confirmButtonText: 'OK'
+  });
+}
+
+(window as any).showWarning = showWarning;
  const existingItems = localStorage.getItem('formData');
+
+ if(!existingItems)
+ {
+    showWarning();
+ }
+ else{
+  let product:string[] = JSON.parse(existingItems);
+
+  const products: Product[] = product.map((pro)=>JSON.parse(pro));
+
  console.log(existingItems);
  
-//  const item = JSON.parse(JSON.parse(existingItems))
 
-if (existingItems) {
-  const products = JSON.parse(existingItems); 
-  console.log("type of products ",typeof products);
+
   
-  console.log(products);
-  
-  const tableBody = document.querySelector("#productTable tbody") as HTMLTableSectionElement;
+  const tableBody = document.querySelector("#productTable tbody") as HTMLTableSectionElement | null;
 
 
-  products.forEach((product: string) => {
-    let pro =JSON.parse(product)
-    console.log(pro);
-    console.log("product_id",pro.product_id);
+    if(!tableBody)
+    {
+      console.log("Table body not found ");
+    }
+    else{
+        products.forEach((product: Product) => {
     
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td class="py-3 px-2 bg-gray-200">${pro.product_id}</td>
-      <td class="py-3 px-2 bg-gray-200">${pro.product_title_value}</td>
-      <td class="py-3 px-2 bg-gray-200">${pro.product_brand_value}</td>
-      <td class="py-3 px-2 bg-gray-200">${pro.product_category_value}</td>
-      <td class="py-3 px-2 bg-gray-200">${pro.product_price_value}</td>
-      <td class="py-3 px-2 bg-gray-200">${pro.product_stock_value}</td>
+      <td class="py-3 px-2 bg-gray-200">${product.product_id}</td>
+      <td class="py-3 px-2 bg-gray-200">${product.product_title_value}</td>
+      <td class="py-3 px-2 bg-gray-200">${product.product_brand_value}</td>
+      <td class="py-3 px-2 bg-gray-200">${product.product_category_value}</td>
+      <td class="py-3 px-2 bg-gray-200">${product.product_price_value}</td>
+      <td class="py-3 px-2 bg-gray-200">${product.product_stock_value}</td>
     `;
     tableBody.appendChild(row);
   });
-} else {
-  console.log("No product data found in localStorage.");
-}   
+    }
+  }  
