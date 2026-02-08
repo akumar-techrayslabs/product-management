@@ -1,55 +1,141 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product List</title>
-        <link href="../styles/output.css" rel="stylesheet" />
-    <script type="module" src="/src/scripts/dist/productsList.js" defer></script>
-    <script src="https://kit.fontawesome.com/3111ef2b65.js" crossorigin="anonymous"></script>
+    <link href="../styles/output.css" rel="stylesheet" />
+    <script
+      type="module"
+      src="/src/scripts/dist/productsList.js"
+      defer
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/3111ef2b65.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     <script type="module" src="/src/scripts/dist/index.js" defer></script>
-</head>
-<body>
-  <div class="flex  max-w-full h-screen ">
-         <div  class="flex h-screen sidebar   top-0 left-0 ">
-            <aside id="sidebar" class="md:block hidden bg-gray-800 text-white w-64 p-4">
-                <div class="text-2xl font-semibold mb-6 w-full px-4">Techrays</div>
-                <nav>
-                    <a href="./dashboard.html" class="block py-6 px-4 rounded hover:bg-gray-700">Dashboard</a>
-                    <a href="./products.html" class="block py-6 px-4 rounded hover:bg-gray-700">Add Products</a>
-                    <a href="./productsList.html" class="block py-6 px-4 rounded hover:bg-gray-700">Products</a>
-                    <a href="./editProduct.html" class="block py-6 px-4 rounded hover:bg-gray-700">Edit Products</a>
-                </nav>
-            </aside>
-             <button
-            id="menu-btn" onclick="menuBtnfunct()"
-            class="md:hidden cursor-pointer fixed top-4 right-4 z-50 bg-gray-800 text-white p-2 rounded"
+    <script type="module" src="/src/scripts/dist/index.js" defer></script>
+  </head>
+  <body>
+    <div class="flex max-w-full h-screen">
+      <div class="flex h-screen sidebar top-0 left-0">
+        <aside
+          id="sidebar"
+          class="md:block hidden bg-gray-800 text-white w-64 p-4"
+        >
+          <div class="text-2xl font-semibold mb-6 w-full px-4">Techrays</div>
+          <nav>
+            <a
+              href="./dashboard.html"
+              class="block py-6 px-4 rounded hover:bg-gray-700"
+              >Dashboard</a
             >
-            <i class="fa-solid fa-bars"></i>
+            <a
+              href="./products.html"
+              class="block py-6 px-4 rounded hover:bg-gray-700"
+              >Add Products</a
+            >
+            <a
+              href="./productsList.html"
+              class="block py-6 px-4 rounded hover:bg-gray-700"
+              >Products</a
+            >
+            <a
+              href="./editProduct.html"
+              class="block py-6 px-4 rounded hover:bg-gray-700"
+              >Edit Products</a
+            >
+          </nav>
+        </aside>
+        <button
+          id="menu-btn"
+          onclick="menuBtnfunct()"
+          class="md:hidden cursor-pointer fixed top-4 right-4 z-50 bg-gray-800 text-white p-2 rounded"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+      <div class="relative w-full text-black h-full dashboard">
+        <table
+          id="productTable"
+          class="w-[90%] mx-auto bg-white shadow-md rounded-lg overflow-hidden m-2"
+        >
+          <thead class="bg-gray-600 text-white">
+            <tr>
+              <th class="px-6 py-3 text-left text-sm font-semibold">ID</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Title</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Brand</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">
+                Category
+              </th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Price</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Stock</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Delete</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Edit</th>
+            </tr>
+          </thead>
+          <tbody class="divide-gray-200"></tbody>
+        </table>
+        <div
+          id="edit-form"
+          class="hidden top-0 w-full h-full border flex justify-center items-center bg-white z-500"
+        >
+          <form
+            id="product-form"
+            class="w-full max-w-275 px-10 py-8 text-center shadow-xl rounded-2xl flex flex-col gap-1 items-center"
+          >
+            <h1 class="text-center md:text-4xl text-xl mb-5">Edit Product</h1>
+            <input type="hidden" id="productId" />
+
+            <input
+              class="w-[70%] py-4 px-4 mr-2 mb-2 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none bg-gray-100"
+              type="text"
+              id="product-title"
+              name="product-title"
+              placeholder="Enter Product title"
+            />
+            <input
+              class="w-[70%] py-4 bg-gray-100 px-4 mb-3 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none"
+              type="text"
+              id="product-brand"
+              name="product-brand"
+              placeholder="Enter Product Brand"
+            />
+
+            <input
+              class="w-[70%] py-4 bg-gray-100 px-4 mb-3 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none"
+              type="tel"
+              id="product-category"
+              name="product-category"
+              placeholder="Enter Product Category"
+            />
+            <input
+              class="md:w-[70%] py-4 bg-gray-100 px-4 mb-3 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none"
+              type="number"
+              id="product-price"
+              name="product-price"
+              placeholder="Enter Price"
+            />
+            <input
+              class="md:w-[70%] py-4 bg-gray-100 px-4 mb-3 text-sm text-black rounded-sm focus:border focus:border-gray-900 outline-none"
+              type="number"
+              id="product-stock"
+              name="product-stock"
+              placeholder="Enter Stock"
+            />
+
+            <button
+              type="submit"
+              id="edit-btn"
+              class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-full cursor-pointer"
+            >
+              Edit Product
             </button>
+          </form>
         </div>
-
-        <div class=" w-full text-black h-full dashboard">
-
-         <table id="productTable" class="w-[90%] mx-auto bg-white  shadow-md rounded-lg overflow-hidden m-2">
-      <thead class="bg-gray-600 text-white">
-        <tr>
-          <th class="px-6 py-3 text-left text-sm font-semibold">ID</th>
-          <th class="px-6 py-3 text-left text-sm font-semibold">Title</th>
-          <th class="px-6 py-3 text-left text-sm font-semibold">Brand</th>
-          <th class="px-6 py-3 text-left text-sm font-semibold">Category</th>
-          <th class="px-6 py-3 text-left text-sm font-semibold">Price</th>
-          <th class="px-6 py-3 text-left text-sm font-semibold">Stock</th>
-          <th class="px-6 py-3 text-left text-sm font-semibold">Delete</th>
-          <th class="px-6 py-3 text-left text-sm font-semibold">Edit</th>
-        </tr>
-      </thead>
-      <tbody class=" divide-gray-200 ">
-        
-      </tbody>
-    </table>  
-        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
