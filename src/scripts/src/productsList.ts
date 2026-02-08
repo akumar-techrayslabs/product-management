@@ -1,4 +1,4 @@
-import createPlugin from "../../../node_modules/tailwindcss/dist/plugin.mjs";
+
 
 interface Product{
   product_id:string;
@@ -93,13 +93,20 @@ function showUpdate() {
 {
   const delProduct = products.filter((product) =>product.product_id != id);
   const updatedProduct = delProduct.map((p)=>JSON.stringify(p));
-  showDelete();
   localStorage.setItem("formData",JSON.stringify(updatedProduct));
+  showDelete();
 }
 (window as any).deleteProduct = deleteProduct
 
+function getProductsFromStorage():Product[]{
+  const data = localStorage.getItem("formData");
+  if(!data) return[];
+  return JSON.parse(data).map((p:string) =>JSON.parse(p));
+}
+
   function editProduct(id:string):void
   {
+    const products = getProductsFromStorage();
     const product = products.find((product) => product.product_id ===id)
     if(!product) return;
 

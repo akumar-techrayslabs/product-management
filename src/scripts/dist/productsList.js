@@ -1,4 +1,3 @@
-import createPlugin from "../../../node_modules/tailwindcss/dist/plugin.mjs";
 function showWarning() {
     Swal.fire({
         title: 'Warning!',
@@ -61,11 +60,18 @@ else {
     function deleteProduct(id) {
         const delProduct = products.filter((product) => product.product_id != id);
         const updatedProduct = delProduct.map((p) => JSON.stringify(p));
-        showDelete();
         localStorage.setItem("formData", JSON.stringify(updatedProduct));
+        showDelete();
     }
     window.deleteProduct = deleteProduct;
+    function getProductsFromStorage() {
+        const data = localStorage.getItem("formData");
+        if (!data)
+            return [];
+        return JSON.parse(data).map((p) => JSON.parse(p));
+    }
     function editProduct(id) {
+        const products = getProductsFromStorage();
         const product = products.find((product) => product.product_id === id);
         if (!product)
             return;
@@ -109,4 +115,5 @@ else {
         updatedProduct();
     });
 }
+export {};
 //# sourceMappingURL=productsList.js.map
