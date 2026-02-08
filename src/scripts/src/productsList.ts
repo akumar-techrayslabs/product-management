@@ -37,9 +37,6 @@ function showUpdate() {
     text: 'Product Updated Successfully',
     icon: 'success', 
     confirmButtonText: 'OK'
-  }).then(()=>{
-  window.location.reload();
-
   });
 }
 
@@ -80,9 +77,9 @@ function showUpdate() {
       <td class="py-3 px-2 bg-gray-200">${product.product_category_value}</td>
       <td class="py-3 px-2 bg-gray-200">${product.product_price_value}</td>
       <td class="py-3 px-2 bg-gray-200">${product.product_stock_value}</td>
-      <td class="py-3 px-2 bg-gray-200 "> <i class="fa-solid fa-trash cursor-pointer" style="color: #1e2939;" onclick="deleteProduct(${product.product_id})"></i>
+      <td class="py-3 px-2 bg-gray-200 "> <i class="fa-solid fa-trash cursor-pointer" style="color: #1e2939;" onclick="deleteProduct('${product.product_id}')"></i>
       </td>
-      <td class="py-3 px-2 bg-gray-200 "> <i class="fa-solid fa-pen-to-square cursor-pointer" style="color: #1e2939;" onclick="editProduct(${product.product_id})"></i>
+      <td class="py-3 px-2 bg-gray-200 "> <i class="fa-solid fa-pen-to-square cursor-pointer" style="color: #1e2939;" onclick="editProduct('${product.product_id}')"></i>
       </td>
     `;
     tableBody.appendChild(row);
@@ -156,6 +153,8 @@ function showUpdate() {
     const updatedString = updatedProducts.map((p)=>JSON.stringify(p));
 
     localStorage.setItem("formData",JSON.stringify(updatedString));
+    document.getElementById("edit-form")?.classList.add("hidden");
+    document.getElementById("productTable")?.classList.remove("hidden");
     showUpdate();
 
   }
