@@ -28,8 +28,8 @@ function showWarning() {
 
 form.addEventListener('submit', (e: Event) => {
     e.preventDefault(); 
-    let product_id : number;
-    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    let product_id : string;
+    const randomNumber = Date.now.toString() as string;
     product_id = randomNumber;
 
     

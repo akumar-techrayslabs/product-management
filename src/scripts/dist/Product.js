@@ -21,7 +21,7 @@ window.showWarning = showWarning;
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     let product_id;
-    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    const randomNumber = Date.now.toString();
     product_id = randomNumber;
     let product_title = document.getElementById("product-title");
     let product_title_value = product_title.value;

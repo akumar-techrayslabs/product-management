@@ -1,5 +1,5 @@
 interface Product{
-  product_id:number;
+  product_id:string;
   product_title_value:string;
   product_brand_value:string;
   product_category_value:string;
@@ -75,7 +75,7 @@ function showDelete() {
 
 
 
-    function deleteProduct(id:number):void
+    function deleteProduct(id:string):void
 {
   const delProduct = products.filter((product) =>product.product_id !== id);
   const updatedProduct = delProduct.map((p)=>JSON.stringify(p));
