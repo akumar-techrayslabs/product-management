@@ -18,8 +18,20 @@ function showWarning() {
     confirmButtonText: 'OK'
   });
 }
+function showDelete() {
+  Swal.fire({
+    title: 'Suucess!',
+    text: 'Product Deleted Successfully',
+    icon: 'success', 
+    confirmButtonText: 'OK'
+  }).then(()=>{
+  window.location.reload();
+
+  });
+}
 
 (window as any).showWarning = showWarning;
+(window as any).showDelete = showDelete;
  const existingItems = localStorage.getItem('formData');
 
  if(!existingItems)
@@ -54,8 +66,23 @@ function showWarning() {
       <td class="py-3 px-2 bg-gray-200">${product.product_category_value}</td>
       <td class="py-3 px-2 bg-gray-200">${product.product_price_value}</td>
       <td class="py-3 px-2 bg-gray-200">${product.product_stock_value}</td>
+      <td class="py-3 px-2 bg-gray-200 "> <i class="fa-solid fa-trash cursor-pointer" style="color: #1e2939;" onclick="deleteProduct(${product.product_id})"></i>
+      </td>
     `;
     tableBody.appendChild(row);
   });
     }
+
+
+
+    function deleteProduct(id:number):void
+{
+  const delProduct = products.filter((product) =>product.product_id !== id);
+  const updatedProduct = delProduct.map((p)=>JSON.stringify(p));
+  showDelete();
+  localStorage.setItem("formData",JSON.stringify(updatedProduct));
+}
+(window as any).deleteProduct = deleteProduct
   }  
+
+
