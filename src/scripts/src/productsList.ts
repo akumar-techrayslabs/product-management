@@ -106,8 +106,8 @@ function getProductsFromStorage():Product[]{
 
   function editProduct(id:string):void
   {
-    const products = getProductsFromStorage();
-    const product = products.find((product) => product.product_id ===id)
+    
+    const product = products.find((product) => product.product_id ==id)
     if(!product) return;
 
     const editform = document.getElementById("edit-form") as HTMLElement;

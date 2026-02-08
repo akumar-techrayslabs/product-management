@@ -71,8 +71,7 @@ else {
         return JSON.parse(data).map((p) => JSON.parse(p));
     }
     function editProduct(id) {
-        const products = getProductsFromStorage();
-        const product = products.find((product) => product.product_id === id);
+        const product = products.find((product) => product.product_id == id);
         if (!product)
             return;
         const editform = document.getElementById("edit-form");

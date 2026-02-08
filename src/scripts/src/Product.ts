@@ -29,7 +29,7 @@ function showWarning() {
 form.addEventListener('submit', (e: Event) => {
     e.preventDefault(); 
     let product_id : string;
-    const randomNumber = Date.now.toString() as string;
+    const randomNumber = Date.now().toString() as string;
     product_id = randomNumber;
 
     
@@ -74,6 +74,7 @@ form.addEventListener('submit', (e: Event) => {
     console.log('Form data saved successfully.');
     showAlert();
     form.reset();
+    (window as any).getProductsFromStorage?.();
 
   } catch (error) {
     console.error('Error saving data to localStorage:', error);
