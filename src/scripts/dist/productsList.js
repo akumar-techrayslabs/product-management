@@ -22,6 +22,8 @@ function showUpdate() {
         text: 'Product Updated Successfully',
         icon: 'success',
         confirmButtonText: 'OK'
+    }).then(() => {
+        window.location.reload();
     });
 }
 window.showWarning = showWarning;
